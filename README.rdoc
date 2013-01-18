@@ -40,6 +40,7 @@
   - issued_by_application_id
   - message_key_id
   - data
+  - issued_at
 
   NotifyMe
   - message_key_id

@@ -6,4 +6,6 @@ class App < ActiveRecord::Base
 
   has_many :app_allowed_keys
   has_many :allowed_message_keys, through: :app_allowed_keys, class_name: 'MessageKey'
+
+  has_many :messages
 end
