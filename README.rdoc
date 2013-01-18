@@ -32,10 +32,3 @@ Run
     bundle exec yardoc --plugin rest
 
 then open doc/index.html
-
-== Models
-
-  NotifyMe
-  - message_key_id
-  - application_id
-  - url
