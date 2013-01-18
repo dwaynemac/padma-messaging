@@ -1,6 +1,6 @@
 == Messaging Service
 
-  Web Service for PADMA apps to send asyncronic messages
+  Web Service for apps to send asyncronic messages
 
 == Framework
 
@@ -10,12 +10,15 @@
 
   issuing a message
   POST /v0/messages, {message: { key_name, data}, app_key}
+  see details in doc/index.html
 
   registering for notifications
-  POST /v0/notify_me {notify_me: {message_key_name, url}, app_key}
+  POST /v0/notify_me {notify_me: {key_name, url}, app_key}
+  see details in doc/index.html
 
   unregistering for notification
-  DELETE /v0/notify_me {message_key_name, app_key}
+  DELETE /v0/notify_me {key_name, app_key}
+  see details in doc/index.html
 
 == Creating an app_key for an application
 
@@ -23,24 +26,14 @@
 
     App.create(name: 'application-name', app_key: 'xxx-yy')
 
-=== Models
+== WS API Documentation
 
-  MessageKey:
-  - name
+Run
+    bundle exec yardoc --plugin rest
 
-  App:
-  - name
-  - app_key
+then open doc/index.html
 
-  AppAllowedKey:
-  - application_id
-  - message_key_id
-
-  Message:
-  - issued_by_application_id
-  - message_key_id
-  - data
-  - issued_at
+== Models
 
   NotifyMe
   - message_key_id
