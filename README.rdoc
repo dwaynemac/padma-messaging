@@ -5,3 +5,43 @@
 == Framework
 
   Rails (rails-api)
+
+== API
+
+  issuing a message
+  POST /v0/messages, {message: { key_name, data}, app_key}
+
+  registering for notifications
+  POST /v0/notify_me {notify_me: {message_key_name, url}, app_key}
+
+  unregistering for notification
+  DELETE /v0/notify_me {message_key_name, app_key}
+
+== Creating an app_key for an application
+
+  This has to be done in the console by a sys-admin
+
+    App.create(name: 'application-name', app_key: 'xxx-yy')
+
+=== Models
+
+  MessageKey:
+  - name
+
+  App:
+  - name
+  - app_key
+
+  AppAllowedKey:
+  - application_id
+  - message_key_id
+
+  Message:
+  - issued_by_application_id
+  - message_key_id
+  - data
+
+  NotifyMe
+  - message_key_id
+  - application_id
+  - url
