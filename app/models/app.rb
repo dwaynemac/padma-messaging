@@ -3,4 +3,7 @@ class App < ActiveRecord::Base
 
   validates_uniqueness_of :app_key
   validates_uniqueness_of :name
+
+  has_many :app_allowed_keys
+  has_many :allowed_message_keys, through: :app_allowed_keys, class_name: 'MessageKey'
 end

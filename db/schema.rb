@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130118155701) do
+ActiveRecord::Schema.define(:version => 20130118155925) do
+
+  create_table "app_allowed_keys", :force => true do |t|
+    t.integer  "app_id"
+    t.integer  "message_key_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "apps", :force => true do |t|
     t.string   "name"
