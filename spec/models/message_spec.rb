@@ -8,6 +8,10 @@ describe Message do
   let(:message){Message.new()}
   let(:message_key){ FactoryGirl.create(:message_key, name: 'this-name')}
 
+  describe ".clear_all_finished" do
+    it 'destroys all fully delivered messages'
+  end
+
   describe "#notify_subscribed_apps" do
 
   end

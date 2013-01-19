@@ -14,6 +14,13 @@ class Message < ActiveRecord::Base
   has_many :app_message_deliveries, dependent: :destroy
 
   ##
+  # Destroys all messages that have been fully delivered
+  #
+  def self.clear_all_finished
+    Message.all.each { |msg| msg.destroy if msg.finished_delivery? }
+  end
+
+  ##
   # Checks if this message has been delivered to given app
   # @param [App] app
   # @return [Boolean]
@@ -45,7 +52,7 @@ class Message < ActiveRecord::Base
   end
 
   ##
-  # It makes a POST request to que URL
+  # It makes a POST request to subcribed apps URL
   # @return [Boolean]
   def notify_subscribed_apps
     return true if finished_delivery?
