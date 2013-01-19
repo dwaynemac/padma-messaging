@@ -4,12 +4,33 @@ describe Message do
   it { should validate_presence_of :app_id }
   it { should validate_presence_of :message_key_id }
 
-  let(:app){FactoryGirl.create(:app, name: 'app-name')}
-  let(:message){Message.new()}
-  let(:message_key){ FactoryGirl.create(:message_key, name: 'this-name')}
+  let(:app){create(:app, name: 'app-name')}
+  let(:message){create(:message)}
+  let(:message_key){ create(:message_key, name: 'this-name')}
 
   describe ".clear_all_finished" do
-    it 'destroys all fully delivered messages'
+    let(:other_message){create(:message)}
+    before do
+      nm = create(:notify_me, message_key: other_message.message_key)
+      create(:app_message_delivery, message: other_message, app: nm.app, delivered: false)
+
+      3.times{create(:notify_me, message_key: message.message_key)}
+
+      message.registered_apps.each do |app|
+        message.mark_delivered_to(app)
+      end
+    end
+
+    it 'destroys all fully delivered messages' do
+      Message.clear_all_finished
+      Message.all.should == [other_message]
+    end
+
+    it 'destroys messages with no apps subscribed' do
+      tm = create(:message)
+      Message.clear_all_finished
+      Message.all.should_not include tm
+    end
   end
 
   describe "#notify_subscribed_apps" do
@@ -37,13 +58,23 @@ describe Message do
   describe "#finished_delivery?" do
     context "if message has been delivered to all subscribed apps" do
       before do
+        3.times{create(:notify_me, message_key: message.message_key)}
+        message.message_key.registered_apps.each do |app|
+          create(:app_message_delivery, message: message, app: app, delivered: true)
+        end
       end
-      it 'returns true'
+      it 'returns true' do
+        message.finished_delivery?.should be_true
+      end
     end
     context "if message has NOT been delivered to all subscribed apps" do
       before do
+        create(:notify_me, message_key: message.message_key)
+        3.times{create(:app_message_delivery, message: message, delivered: true)}
       end
-      it 'returns false'
+      it 'returns false' do
+        message.finished_delivery?.should be_false
+      end
     end
   end
 

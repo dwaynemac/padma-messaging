@@ -11,6 +11,8 @@ class Message < ActiveRecord::Base
   belongs_to :message_key
   validates_presence_of :message_key_id
 
+  has_many :registered_apps, through: :message_key
+
   has_many :app_message_deliveries, dependent: :destroy
 
   ##
@@ -48,7 +50,9 @@ class Message < ActiveRecord::Base
   #
   # @return [Boolean]
   def finished_delivery?
-    app_message_deliveries.select{|d|d.delivered?}.map(&:app_id).sort == message_key.registered_apps.map(:app_id).sort
+    delivered_ids = app_message_deliveries.select { |d| d.delivered? }.map(&:app_id)
+    registered_ids = message_key.notify_mes.map(&:app_id)
+    delivered_ids.sort == registered_ids.sort
   end
 
   ##

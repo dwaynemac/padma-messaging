@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :message do
-    app_id 1
-    message_key_id 1
+    app
+    message_key
     data "MyText"
   end
 end

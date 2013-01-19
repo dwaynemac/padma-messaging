@@ -6,4 +6,6 @@ class AppMessageDelivery < ActiveRecord::Base
 
   validates_presence_of :app
   validates_presence_of :message
+
+  validates_uniqueness_of :app_id, scoped: :message_id
 end
