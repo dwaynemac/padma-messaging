@@ -97,10 +97,4 @@ class Message < ActiveRecord::Base
     end
     hydra
   end
-
-  def request_for(notify_me)
-    Typhoeus::Request.new(
-        notify_me.url
-    )
-  end
 end
