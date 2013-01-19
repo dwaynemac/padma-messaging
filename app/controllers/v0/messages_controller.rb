@@ -16,12 +16,16 @@ class V0::MessagesController < ApplicationController
   # @example_response [201] 'message posted'
   # @example_response [422] {errors: {...} }
   def create
-    @message = current_app.messages.new(params[:message])
+    if current_app.allowed_message_keys.map(&:name).include?(params[:message][:key_name])
+      @message = current_app.messages.new(params[:message])
 
-    if @message.save
-      render json: 'message posted', status: :created
+      if @message.save
+        render json: 'message posted', status: :created
+      else
+        render json: {errors: @message.errors}, status: :unprocessable_entity
+      end
     else
-      render json: {errors: @message.errors}, status: :unprocessable_entity
+      render json: 'you cant issue messages under this key, contact sys-admin', status: 403
     end
   end
 
