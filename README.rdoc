@@ -2,10 +2,6 @@
 
   Web Service for apps to send asyncronic messages
 
-== Framework
-
-  Rails (rails-api)
-
 == API
 
   issuing a message
@@ -30,9 +26,14 @@
 
     App.create(name: 'application-name', app_key: 'xxx-yy')
 
-== WS API Documentation
+== Generating API Documentation
 
 Run
     bundle exec yardoc --plugin rest
 
 then open doc/index.html
+
+== Framework
+
+  Rails (rails-api)
+

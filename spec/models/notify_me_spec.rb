@@ -3,7 +3,7 @@ require 'spec_helper'
 describe NotifyMe do
 
   let(:app){FactoryGirl.create(:app, name: 'app-name')}
-  let(:notify_me){NotifyMe.new()}
+  let(:notify_me){FactoryGirl.create(:notify_me)}
   let(:message_key){ FactoryGirl.create(:message_key, name: 'this-name')}
 
   it { should validate_presence_of :app_id }
@@ -12,6 +12,14 @@ describe NotifyMe do
 
   it { should belong_to :app }
   it { should belong_to :message_key }
+
+  describe "JSON version" do
+    subject{notify_me.as_json.symbolize_keys!}
+    it { should have_key :key_name }
+    it { should have_key :app_name }
+    it { should_not have_key :message_key_id }
+    it { should_not have_key :app_id }
+  end
 
   describe "#key_name" do
     before do

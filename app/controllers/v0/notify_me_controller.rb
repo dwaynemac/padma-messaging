@@ -1,5 +1,5 @@
 # @topic Notifications
-# @url NotifyMe
+# @url Subscriptions
 class V0::NotifyMeController < ApplicationController
 
   ##
