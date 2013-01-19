@@ -11,13 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130118233415) do
+ActiveRecord::Schema.define(:version => 20130119015639) do
 
   create_table "app_allowed_keys", :force => true do |t|
     t.integer  "app_id"
     t.integer  "message_key_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "app_message_deliveries", :force => true do |t|
+    t.integer "app_id"
+    t.integer "message_id"
+    t.boolean "delivered"
   end
 
   create_table "apps", :force => true do |t|
@@ -35,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20130118233415) do
     t.integer  "app_id"
     t.integer  "message_key_id"
     t.text     "data"
+    t.datetime "issued_at"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end

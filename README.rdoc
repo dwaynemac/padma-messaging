@@ -20,6 +20,13 @@ list key_names to wich i'm registered to notification
   GET /v0/notify_me {app_key}
 see details in doc/index.html
 
+== Notification
+
+Messaging will send a POST request with the following body to all subscribed URLs.
+    {key_name, data}
+it will expect a success status (=>200,<300) to consider message recieved or will retry.
+
+
 == Creating an app_key for an application
 
 This has to be done in the console by a sys-admin
@@ -36,4 +43,3 @@ then open doc/index.html
 == Framework
 
   Rails (rails-api)
-

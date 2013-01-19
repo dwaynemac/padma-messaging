@@ -8,6 +8,24 @@ describe Message do
   let(:message){Message.new()}
   let(:message_key){ FactoryGirl.create(:message_key, name: 'this-name')}
 
+  describe "#notify_subscribed_apps" do
+
+  end
+
+  describe "#finished_delivery?" do
+    context "if message has been delivered to all subscribed apps" do
+      before do
+      end
+      it 'returns true'
+    end
+    context "if message has NOT been delivered to all subscribed apps" do
+      before do
+      end
+      it 'returns false'
+    end
+  end
+
+  # TODO refactor these to a matcher for SetByName module
   describe "#message_key_name" do
     before do
       message.message_key = message_key
