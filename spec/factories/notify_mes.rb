@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :notify_me do
     message_key
-    url "MyString"
+    url "https://anurl.com"
     app
   end
 end

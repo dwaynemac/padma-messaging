@@ -12,6 +12,8 @@ class NotifyMe < ActiveRecord::Base
   belongs_to :app
   belongs_to :message_key
 
+  validates_format_of :url, with: /^https:\/\//
+
   def as_json(opts={})
     super(except: [:app_id, :message_key_id], methods: [:key_name, :app_name])
   end
