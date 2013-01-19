@@ -31,7 +31,8 @@ it will expect a success status (=>200,<300) to consider message recieved or wil
 
 This has to be done in the console by a sys-admin
 
-    App.create(name: 'application-name', app_key: 'xxx-yy')
+    a = App.create(name: 'application-name', app_key: 'xxx-yy')
+    a.app_allowed_keys.create!(key_name: 'enrollment')
 
 == Generating API Documentation
 
