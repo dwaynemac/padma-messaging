@@ -12,5 +12,4 @@ class NotifyMe < ActiveRecord::Base
   belongs_to :app
   belongs_to :message_key
 
-
 end

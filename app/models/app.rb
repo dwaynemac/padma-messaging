@@ -8,4 +8,7 @@ class App < ActiveRecord::Base
   has_many :allowed_message_keys, through: :app_allowed_keys, class_name: 'MessageKey'
 
   has_many :messages
+
+  has_many :notify_mes
+  has_many :registered_keys, through: :notify_mes, class_name: 'MessageKey', source: :message_key
 end

@@ -20,6 +20,10 @@
   DELETE /v0/notify_me {key_name, app_key}
   see details in doc/index.html
 
+  list key_names to wich i'm registered to notification
+  GET /v0/notify_me {app_key}
+  see details in doc/index.html
+
 == Creating an app_key for an application
 
   This has to be done in the console by a sys-admin
