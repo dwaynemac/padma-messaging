@@ -14,7 +14,7 @@ class V0::NotifyMeController < ApplicationController
   #
   # @example_response [200] {collection, total }
   def index
-    @notify_mes = current_app.registered_keys
+    @notify_mes = current_app.notify_mes
     render json: {collection: @notify_mes, total: @notify_mes.count}, status: 200
   end
 
