@@ -13,6 +13,24 @@ describe Message do
   end
 
   describe "#notify_subscribed_apps" do
+    let(:hydra){Typhoeus::Hydra.new}
+    before do
+      create(:notify_me, message_key: message_key)
+      create(:notify_me, message_key: message_key)
+      message.message_key = message_key
+    end
+    it "enqueues a request for each undelivered notify me" do
+      message.save
+      create(:app_message_delivery, message: message, delivered: false, app: NotifyMe.last.app)
+      message.queue_notification_requests(hydra)
+      hydra.queued_requests.count.should == 2
+    end
+    it 'doesnt enqueue if notifyme has been delivered' do
+      message.save
+      create(:app_message_delivery, message: message, delivered: true, app: NotifyMe.last.app)
+      message.queue_notification_requests(hydra)
+      hydra.queued_requests.count.should == 1
+    end
 
   end
 

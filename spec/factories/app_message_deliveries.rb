@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :app_message_delivery do
-    app_id 1
-    message_id 1
+    app
+    message
     delivered false
   end
 end

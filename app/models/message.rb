@@ -57,6 +57,15 @@ class Message < ActiveRecord::Base
   def notify_subscribed_apps
     return true if finished_delivery?
     hydra = Typhoeus::Hydra.new
+    queue_notification_requests(hydra)
+    hydra.run
+    return finished_delivery?
+  end
+
+  ##
+  # Queues POST requests in given hydra
+  # @return [Typhoues::Hydra]
+  def queue_notification_requests(hydra)
     message_key.notify_mes.each do |nm|
       unless delivered_to?(nm.app)
         req = Typhoeus::Request.new(
@@ -73,8 +82,7 @@ class Message < ActiveRecord::Base
         end
         hydra.queue(req)
       end
-      hydra.run
     end
-    return finished_delivery?
+    hydra
   end
 end
