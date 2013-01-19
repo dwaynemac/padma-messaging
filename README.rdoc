@@ -23,7 +23,7 @@ see details in doc/index.html
 == Notification
 
 Messaging will send a POST request with the following body to all subscribed URLs.
-    {key_name, data}
+    {key_name, data, secret_key(if configured) }
 it will expect a success status (=>200,<300) to consider message recieved or will retry.
 
 
