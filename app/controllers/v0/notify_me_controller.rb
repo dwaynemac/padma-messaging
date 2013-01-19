@@ -24,6 +24,11 @@ class V0::NotifyMeController < ApplicationController
   # @url [POST] /v0/notify_me
   #
   # @argument app_key [String]
+  # @argument notify_me [Hash]
+  #
+  # @key_for notify_me [String] secret_key POST to URL will send this secret_key: for security.
+  # @key_for notify_me [String] url It must be an https valid URL
+  # @key_for notify_me [String] key_name Key to wich you subscribe. eg: 'enrollment'
   #
   # @example_response [201] 'OK'
   def create

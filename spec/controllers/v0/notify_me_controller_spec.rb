@@ -30,7 +30,7 @@ describe V0::NotifyMeController do
            app_key: 'secret',
            notify_me: {
                key_name: message_key.name,
-               url: 'asd'
+               url: 'https://asd.s'
            }
     end
     it { should respond_with 201 }

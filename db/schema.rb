@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119015639) do
+ActiveRecord::Schema.define(:version => 20130119051221) do
 
   create_table "app_allowed_keys", :force => true do |t|
     t.integer  "app_id"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20130119015639) do
     t.integer  "app_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.text     "secret_key"
   end
 
 end

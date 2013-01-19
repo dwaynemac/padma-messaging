@@ -72,13 +72,21 @@ class Message < ActiveRecord::Base
   def queue_notification_requests(hydra)
     message_key.notify_mes.each do |nm|
       unless delivered_to?(nm.app)
+
+        request_body = {
+            key_name: message_key.name,
+            data: data
+        }
+
+        if nm.secret_key
+          request_body.merge!({secret_key: secret_key})
+        end
+
         req = Typhoeus::Request.new(
             nm.url,
-            body: {
-                key_name: message_key.name,
-                data: data
-            }
+            body: request_body
         )
+
         req.on_complete do |response|
           if response.success?
             mark_delivered_to(nm.app)
@@ -88,5 +96,11 @@ class Message < ActiveRecord::Base
       end
     end
     hydra
+  end
+
+  def request_for(notify_me)
+    Typhoeus::Request.new(
+        notify_me.url
+    )
   end
 end
