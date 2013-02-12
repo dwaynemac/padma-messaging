@@ -45,7 +45,7 @@ class Message < ActiveRecord::Base
   end
 
   ##
-  # Checks if notification has been sent and receieved to all
+  # Checks if notification has been sent and received to all
   # subscribed applications
   #
   # @return [Boolean]

@@ -10,5 +10,5 @@ class MessageKey < ActiveRecord::Base
   has_many :notify_mes, dependent: :destroy
   has_many :registered_apps, through: :notify_mes, class_name: 'App', source: :app
 
-  has_many :messages, dependent: :nullify
+  has_many :messages, dependent: :destroy
 end
