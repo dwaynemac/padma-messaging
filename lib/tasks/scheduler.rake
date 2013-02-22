@@ -8,7 +8,6 @@ end
 task :deliver_messages => :environment do
   hydra = Typhoeus::Hydra.new
   Message.all.each do |msg|
-    Rails.logger.info "queues notifications for message#id:#{msg.id}"
     msg.queue_notification_requests(hydra)
   end
   hydra.run
