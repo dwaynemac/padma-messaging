@@ -79,7 +79,7 @@ class Message < ActiveRecord::Base
         }
 
         if nm.secret_key
-          request_body.merge!({secret_key: secret_key})
+          request_body.merge!({secret_key: nm.secret_key})
         end
 
         req = Typhoeus::Request.new(
