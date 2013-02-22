@@ -11,7 +11,7 @@ issuing a message
 see details in doc/index.html
 
 registering for notifications
-  POST /v0/notify_me {notify_me: {key_name, url}, app_key}
+  POST /v0/notify_me {notify_me: {key_name, url, secret_key}, app_key}
 see details in doc/index.html
 
 unregistering for notification

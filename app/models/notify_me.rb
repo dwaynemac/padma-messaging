@@ -3,7 +3,7 @@ class NotifyMe < ActiveRecord::Base
 
   include SetByName
 
-  attr_accessible :url, :key_name
+  attr_accessible :url, :key_name, :secret_key
 
   validates_presence_of :message_key_id
   validates_presence_of :app_id
