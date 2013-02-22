@@ -89,12 +89,12 @@ class Message < ActiveRecord::Base
 
         req.on_complete do |response|
           if response.success?
-            Rails.logger.info "delivered notifications for message#id:#{msg.id}"
+            Rails.logger.info "delivered notifications for message#id:#{self.id}"
             mark_delivered_to(nm.app)
           end
         end
         hydra.queue(req)
-        Rails.logger.info "queues notifications for message#id:#{msg.id}"
+        Rails.logger.info "queues notifications for message#id:#{self.id}"
       end
     end
     hydra
