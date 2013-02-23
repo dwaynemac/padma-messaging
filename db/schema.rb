@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(:version => 20130119051221) do
     t.integer  "app_id"
     t.integer  "message_key_id"
     t.text     "data"
-    t.datetime "issued_at"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
