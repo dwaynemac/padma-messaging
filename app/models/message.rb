@@ -91,6 +91,8 @@ class Message < ActiveRecord::Base
           if response.success?
             Rails.logger.info "delivered notifications for message#id:#{self.id}"
             mark_delivered_to(nm.app)
+          else
+            Rails.logger.info "notification for message#id:#{self.id} failed."
           end
         end
         hydra.queue(req)
