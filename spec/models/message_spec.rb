@@ -55,6 +55,22 @@ describe Message do
 
   end
 
+  describe "#mark_delivered_to" do
+    it "creates new AppMessageDelivery with delivered=true" do
+      expect{message.mark_delivered_to(app)}.to change{AppMessageDelivery.count}.by 1
+      amd = AppMessageDelivery.last
+      amd.app.should == app
+      amd.message == message
+      amd.should be_delivered
+    end
+    specify "#delivered_to?(same_app) returns true" do
+      message.delivered_to?(app).should be_false
+      message.mark_delivered_to(app)
+      message.reload
+      message.delivered_to?(app).should be_true
+    end
+  end
+
   describe "#finished_delivery?" do
     context "if message has been delivered to all subscribed apps" do
       before do
