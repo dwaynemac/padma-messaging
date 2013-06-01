@@ -96,7 +96,7 @@ class Message < ActiveRecord::Base
           end
         end
         hydra.queue(req)
-        Rails.logger.info "queues notifications for message#id:#{self.id}"
+        Rails.logger.info "queued notifications for message#id:#{self.id}"
       end
     end
     hydra

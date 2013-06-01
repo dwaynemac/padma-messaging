@@ -7,9 +7,14 @@ namespace :messages_worker do
         begin
           hydra = Typhoeus::Hydra.new
           puts "Polling for messages"
-          Message.all.each do |msg|
-            puts "Managing message: #{msg.id}"
-            msg.queue_notification_requests(hydra)
+          messages = Message.all
+          if messages.empty?
+            puts '  no messages'
+          else
+            messages.each do |msg|
+              puts "  managing message: #{msg.id}"
+              msg.queue_notification_requests(hydra)
+            end
           end
           hydra.run
           sleep 1.minute
