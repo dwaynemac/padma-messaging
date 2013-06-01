@@ -6,19 +6,21 @@ namespace :messages_worker do
       loop do
         begin
           hydra = Typhoeus::Hydra.new
+          puts "Polling for messages"
           Message.all.each do |msg|
-            Rails.logger.info "Managing message: #{msg.id}"
+            puts "Managing message: #{msg.id}"
             msg.queue_notification_requests(hydra)
           end
           hydra.run
           sleep 1.minute
         rescue StandardError => e
-          Rails.logger.warn("Exception in MessagesWorker: #{e.message}")
+          puts "Exception in MessagesWorker: #{e.message}"
         end
       end
     rescue SignalException => e
-      puts "Ending MessagesWorker. (#{e})"
+      puts "Ending MessagesWorker with signal: #{e}"
     end
+    puts "MessageWorker exits"
   end
 end
 
