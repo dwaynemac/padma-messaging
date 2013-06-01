@@ -46,3 +46,12 @@ then open doc/index.html
 == Framework
 
   Rails (rails-api)
+
+== Deployment
+
+App has two main processes. web and worker (see Procfile).
+To start app locally just run:
+
+    bundle exec foreman start
+
+On heroku we are currently using 2 instances one for the web-service and one for the worker.
