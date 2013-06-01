@@ -5,6 +5,7 @@ gem 'rails', '3.2.11'
 gem 'rails-api'
 gem 'typhoeus', '~> 0.5 '
 
+gem 'foreman'
 
 group :production do
   gem 'pg'

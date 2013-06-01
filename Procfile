@@ -1,0 +1,2 @@
+worker:  bundle exec rake messages_worker:run
+web:     bundle exec rails s
