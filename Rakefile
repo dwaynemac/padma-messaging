@@ -5,3 +5,5 @@
 require File.expand_path('../config/application', __FILE__)
 
 Messaging::Application.load_tasks
+
+task :default => :spec

@@ -151,6 +151,7 @@ DEPENDENCIES
   pg
   rails (= 3.2.11)
   rails-api
+  rake
   rb-inotify
   rspec-rails
   shoulda

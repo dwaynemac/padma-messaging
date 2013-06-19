@@ -23,6 +23,8 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rake' # for travis-ci
+
   # Pretty printed test output
   gem 'turn', :require => false
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
