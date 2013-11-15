@@ -16,3 +16,4 @@
 
 *.swp
 .yardoc/
+coverage/

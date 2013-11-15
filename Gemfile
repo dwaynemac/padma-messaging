@@ -25,6 +25,7 @@ end
 
 group :test do
   gem 'rake' # for travis-ci
+  gem 'coveralls', require: false
 
   # Pretty printed test output
   gem 'turn', :require => false
