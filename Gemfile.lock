@@ -70,6 +70,9 @@ GEM
     mocha (0.10.5)
       metaclass (~> 0.0.1)
     multi_json (1.5.0)
+    newrelic-typhoeus (0.0.3)
+      newrelic_rpm (~> 3.0)
+      typhoeus (>= 0.4.2)
     newrelic_rpm (3.6.3.104)
     pg (0.14.1)
     polyglot (0.3.3)
@@ -147,6 +150,7 @@ DEPENDENCIES
   factory_girl_rails
   foreman
   libnotify
+  newrelic-typhoeus
   newrelic_rpm
   pg
   rails (= 3.2.11)

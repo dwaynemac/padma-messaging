@@ -10,6 +10,7 @@ gem 'foreman'
 group :production do
   gem 'pg'
   gem 'newrelic_rpm'
+  gem 'newrelic-typhoeus'
   # gem 'unicorn'
 end
 
