@@ -14,15 +14,20 @@ group :production do
   # gem 'unicorn'
 end
 
+group :development do 
+  gem 'debugger'
+end
+
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'factory_girl_rails'
+end
+
+group :doc do
   gem 'yard', '~> 0.7.4'
   gem 'yard-rest', git: 'git@github.com:dwaynemac/yard-rest-plugin.git'
-
-  gem 'debugger'
 end
 
 group :test do

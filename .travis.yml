@@ -1,4 +1,4 @@
 language: ruby
-bundler_args: --without development production
+bundler_args: --without development:production:doc
 rvm:
  - 1.9.3
