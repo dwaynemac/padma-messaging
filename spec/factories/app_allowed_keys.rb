@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :app_allowed_key do
-    application_id 1
+    app_id 1
     message_key_id ""
   end
 end

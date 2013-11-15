@@ -13,5 +13,6 @@ FactoryGirl.define do
   factory :app do
     name  { FactoryGirl.generate(:app_names) }
     app_key { FactoryGirl.generate(:app_keys) }
+    app_allowed_keys { [build(:app_allowed_key, app_id: nil, key_name: 'enrollment')] }
   end
 end

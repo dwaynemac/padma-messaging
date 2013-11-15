@@ -15,7 +15,7 @@ class NotifyMe < ActiveRecord::Base
   validates_format_of :url, with: /^https:\/\//, unless: ->{ Rails.env.development? }
 
   def as_json(opts={})
-    super(except: [:app_id, :message_key_id, :created_at, :updated_at, :id], methods: [:key_name])
+    super(except: [:app_id, :message_key_id, :created_at, :updated_at, :id], methods: [:key_name, :app_name])
   end
 
 end

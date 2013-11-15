@@ -21,6 +21,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'yard', '~> 0.7.4'
   gem 'yard-rest', git: 'git@github.com:dwaynemac/yard-rest-plugin.git'
+
+  gem 'debugger'
 end
 
 group :test do
