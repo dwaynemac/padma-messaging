@@ -1,7 +1,4 @@
-{<img src="https://travis-ci.org/dwaynemac/padma-messaging.png" />}[https://travis-ci.org/dwaynemac/padma-messaging]
-{<img src="https://codeclimate.com/github/dwaynemac/padma-messaging.png" />}[https://codeclimate.com/github/dwaynemac/padma-messaging]
-
-== Messaging Service
+== Messaging Service {<img src="https://travis-ci.org/dwaynemac/padma-messaging.png" />}[https://travis-ci.org/dwaynemac/padma-messaging] {<img src="https://codeclimate.com/github/dwaynemac/padma-messaging.png" />}[https://codeclimate.com/github/dwaynemac/padma-messaging] {<img src="https://gemnasium.com/dwaynemac/padma-messaging.png" alt="Dependecies" />}[https://gemnasium.com/dwaynemac/padma-messaging] {<img src="https://coveralls.io/repos/dwaynemac/padma-messaging/badge.png" alt="Coverage Status" />}[https://coveralls.io/r/dwaynemac/padma-messaging]
 
 Web Service for apps to send asyncronic messages
 
