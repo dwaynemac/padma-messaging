@@ -2,3 +2,5 @@ language: ruby
 bundler_args: --without development:production:doc
 rvm:
  - 1.9.3
+script:
+ - "bundle exec rake db:migrate RAILS_ENV=test"
