@@ -92,7 +92,7 @@ class Message < ActiveRecord::Base
             Rails.logger.info "delivered notifications for message#id:#{self.id}"
             mark_delivered_to(nm.app)
           else
-            Rails.logger.info "notification for message#id:#{self.id} failed."
+            Rails.logger.info "notification #{nm.app.name} for message#id:#{self.id} failed."
           end
         end
         hydra.queue(req)

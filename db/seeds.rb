@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+# TODO create message keys
+# communication, updated_communication, destroyed_communication
+# subscription_change, updated.., destroyed..
