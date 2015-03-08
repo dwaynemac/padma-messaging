@@ -17,6 +17,7 @@ namespace :messages_worker do
             end
           end
           hydra.run
+          Message.clear_all_finished
           sleep 1.minute
         rescue StandardError => e
           puts "Exception in MessagesWorker: #{e.message}"
