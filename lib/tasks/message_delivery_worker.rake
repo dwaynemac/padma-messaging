@@ -1,3 +1,6 @@
+
+BATCH_SIZE = 200
+
 namespace :messages_worker do
   desc 'Polls constantly for new messages and delivers them'
   task :run => :environment do
@@ -7,7 +10,7 @@ namespace :messages_worker do
         begin
           hydra = Typhoeus::Hydra.new
           puts "Polling for messages"
-          messages = Message.all
+          messages = Message.limit(BATCH_SIZE).all
           if messages.empty?
             puts '  no messages'
           else
