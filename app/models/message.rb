@@ -19,6 +19,7 @@ class Message < ActiveRecord::Base
   # Destroys all messages that have been fully delivered
   #
   def self.clear_all_finished
+    Rails.logger.info "destroying finished messages"
     Message.all.each { |msg| msg.destroy if msg.finished_delivery? }
   end
 
@@ -27,6 +28,7 @@ class Message < ActiveRecord::Base
   # Destroys all messages that have been created more than OLD_TIME ago
   #
   def self.destroy_old
+    Rails.logger.info "destroying old messages"
     Message.where("created_at < ?", OLD_TIME.ago).destroy_all
   end
 

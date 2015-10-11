@@ -13,6 +13,7 @@ namespace :messages_worker do
           messages = Message.limit(BATCH_SIZE).all
           if messages.empty?
             puts '  no messages'
+            sleep 1.minute
           else
             messages.each do |msg|
               puts "  managing message: #{msg.id}"
