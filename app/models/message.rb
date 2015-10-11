@@ -22,6 +22,14 @@ class Message < ActiveRecord::Base
     Message.all.each { |msg| msg.destroy if msg.finished_delivery? }
   end
 
+  OLD_TIME = 1.week
+  ##
+  # Destroys all messages that have been created more than OLD_TIME ago
+  #
+  def self.destroy_old
+    Message.where("created_at < ?", OLD_TIME.ago).destroy_all
+  end
+
   ##
   # Checks if this message has been delivered to given app
   # @param [App] app

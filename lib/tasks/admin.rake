@@ -17,6 +17,7 @@ namespace :admin do
     task :clear => :environment do
       Rails.logger.info "clearing delivered messages"
       Message.clear_all_finished
+      Message.destroy_old
     end
 
     desc 'delivers all pending notifications'
