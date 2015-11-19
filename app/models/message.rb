@@ -84,6 +84,7 @@ class Message < ActiveRecord::Base
       unless delivered_to?(nm.app)
 
         request_body = {
+            id: id,
             key_name: message_key.name,
             data: data
         }
