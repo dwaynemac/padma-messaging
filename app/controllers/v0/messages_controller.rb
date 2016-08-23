@@ -3,7 +3,7 @@
 class V0::MessagesController < ApplicationController
 
   ##
-  # Creates message that will be propagated within 10 minutes to all apps registered
+  # Creates message that will be propagated to all apps registered
   # to this key_name
   #
   # @url [POST] /v0/messages
