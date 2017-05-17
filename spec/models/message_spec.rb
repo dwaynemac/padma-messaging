@@ -32,8 +32,21 @@ describe Message do
       Message.all.should_not include tm
     end
   end
-
+  
   describe "#notify_subscribed_apps" do
+    describe "if message finishes delivering" do
+      before do
+        Message.any_instance.stub(:finished_delivery?).and_return true
+      end
+      it "is destroyed" do
+        message.notify_subscribed_apps
+        Message.clear_all_finished
+        expect(Message.where(id: message.id).count).to eq 0
+      end
+    end
+  end
+
+  describe "#queue_notification_requests" do
     let(:hydra){Typhoeus::Hydra.new}
     before do
       create(:notify_me, message_key: message_key)

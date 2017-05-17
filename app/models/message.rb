@@ -14,6 +14,8 @@ class Message < ActiveRecord::Base
   has_many :registered_apps, through: :message_key
 
   has_many :app_message_deliveries, dependent: :destroy
+  
+  after_create :queue_delivery
 
   ##
   # Destroys all messages that have been fully delivered
@@ -67,13 +69,22 @@ class Message < ActiveRecord::Base
 
   ##
   # It makes a POST request to subcribed apps URL
+  # returns true if finished delivering
+  # returns false if it didnt finish
   # @return [Boolean]
   def notify_subscribed_apps
     return true if finished_delivery?
     hydra = Typhoeus::Hydra.new
     queue_notification_requests(hydra)
     hydra.run
-    return finished_delivery?
+    Message.clear_all_finished
+    if finished_delivery?
+      return true
+    else
+      # queue retry
+      self.delay(run_at: 2.minutes.from_now).notify_subscribed_apps
+      return false
+    end
   end
 
   ##
@@ -111,5 +122,9 @@ class Message < ActiveRecord::Base
       end
     end
     hydra
+  end
+  
+  def queue_delivery
+    self.delay.notify_subscribed_apps
   end
 end
