@@ -5,6 +5,8 @@ gem 'rails', '3.2.11'
 gem 'rails-api'
 gem 'typhoeus', '~> 0.5 '
 
+gem 'delayed_job_active_record'
+
 gem 'foreman'
 
 group :production do
@@ -13,6 +15,7 @@ group :production do
 end
 
 group :development do 
+  gem 'debugger-ruby_core_source'
   gem 'debugger'
 end
 
