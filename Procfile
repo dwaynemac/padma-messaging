@@ -1,2 +1,2 @@
-worker:  bundle exec rake messages_worker:run
+worker:  bundle exec rake jobs:work
 web:     bundle exec rails s -p $PORT
