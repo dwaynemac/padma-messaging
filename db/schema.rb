@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170517184106) do
+ActiveRecord::Schema.define(:version => 20170613215319) do
 
   create_table "app_allowed_keys", :force => true do |t|
     t.integer  "app_id"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20170517184106) do
     t.integer "app_id"
     t.integer "message_id"
     t.boolean "delivered"
+    t.integer "attempts"
   end
 
   create_table "apps", :force => true do |t|

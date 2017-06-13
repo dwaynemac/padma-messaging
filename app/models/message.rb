@@ -55,6 +55,24 @@ class Message < ActiveRecord::Base
     delivery.delivered=(true)
     delivery.save
   end
+  
+  ##
+  # Register attempt of delivery to app
+  # @param [App] app
+  # @return [Boolean]
+  def register_attempted_delivery_to(app)
+    delivery = app_message_deliveries.where(app_id: app.id).last
+    if delivery.nil?
+      delivery = app_message_deliveries.new(app_id: app.id)
+    end
+    if delivery.attempts.nil?
+      delivery.attempts = 1
+    else
+      delivery.attempts += 1
+    end
+    delivery.save
+  end
+  
 
   ##
   # Checks if notification has been sent and received to all
@@ -62,7 +80,7 @@ class Message < ActiveRecord::Base
   #
   # @return [Boolean]
   def finished_delivery?
-    delivered_ids = app_message_deliveries.select { |d| d.delivered? }.map(&:app_id)
+    delivered_ids = app_message_deliveries.select { |d| d.finished? }.map(&:app_id)
     registered_ids = message_key.notify_mes.map(&:app_id)
     delivered_ids.sort == registered_ids.sort
   end
@@ -114,6 +132,7 @@ class Message < ActiveRecord::Base
             Rails.logger.info "delivered notifications for message#id:#{self.id}"
             mark_delivered_to(nm.app)
           else
+            register_attempted_delivery_to(nm.app)
             Rails.logger.info "notification #{nm.app.name} for message#id:#{self.id} failed."
           end
         end
